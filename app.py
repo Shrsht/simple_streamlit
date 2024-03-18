@@ -20,9 +20,9 @@ REMOTE_DATA = 'coffee_analysis_w_sentiment.csv'
 load_dotenv()
 
 # load Backblaze connection
-b2 = B2(endpoint=os.environ['B2_ENDPOINT'],
-        key_id=os.environ['B2_KEYID'],
-        secret_key=os.environ['B2_APPKEY'])
+b2 = B2(endpoint=os.environ['s3.us-east-005.backblazeb2.com'],
+        key_id=os.environ['202d50a7caa5'],  ##Key_ID
+        secret_key=os.environ['5230a28dc5005a378cea0a15'])  ##Bucket ID
 
 
 # ------------------------------------------------------
