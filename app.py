@@ -36,7 +36,7 @@ b2 = B2(endpoint=os.environ['B2_ENDPOINT'],
 def get_data():
     # collect data frame of reviews and their sentiment
     
-    b2.set_bucket(st.secrets['B2_BUCKETNAME'])
+    b2.set_bucket(os.environ['B2_BUCKETNAME'])
     df_portals = b2.get_df(REMOTE_DATA)
 
 
