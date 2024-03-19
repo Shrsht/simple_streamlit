@@ -2,7 +2,7 @@ import os
 import pickle
 
 import streamlit as st
-#from dotenv import load_dotenv
+from dotenv import load_dotenv
 
 from utils.b2 import B2
 
@@ -21,12 +21,12 @@ REMOTE_DATA = 'final_sample.csv'
 # ------------------------------------------------------
 #                        CONFIG
 # ------------------------------------------------------
-#load_dotenv()
+load_dotenv()
 
 # load Backblaze connection
-b2 = B2(endpoint=st.secrets['B2_ENDPOINT'],
-        key_id=  st.secrets['B2_KEYID'], 
-        secret_key= st.secrets['B2_APPKEY'])  
+b2 = B2(endpoint=os.environ['B2_ENDPOINT'],
+        key_id=os.environ['B2_KEYID'], 
+        secret_key=os.environ['B2_APPKEY'])  
 
 
 # ------------------------------------------------------
