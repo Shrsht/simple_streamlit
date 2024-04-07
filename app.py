@@ -10,31 +10,15 @@ from utils.b2 import B2
 import plotly.express as px
 import plotly.graph_objects as go
 
-# ------------------------------------------------------
-#                     RESUME UPLOAD
-# ------------------------------------------------------
-
-st.set_page_config(page_title = "Resume Uploader")
-
-resume_file = st.file_uploader(label = "Please Upload your Resume (pdf files only)", type = 'pdf')
-
+from pdf2image import convert_from_bytes
+from PIL import Image
+from PyPDF2 import PdfReader
 
 
 # ------------------------------------------------------
 #                      APP CONSTANTS
 # ------------------------------------------------------
 REMOTE_DATA = 'final_sample.csv'
-
-
-# ------------------------------------------------------
-#                        CONFIG
-# ------------------------------------------------------
-load_dotenv()
-
-# load Backblaze connection
-b2 = B2(endpoint=os.environ['B2_ENDPOINT'],
-        key_id=os.environ['B2_KEYID'], 
-        secret_key=os.environ['B2_APPKEY'])  
 
 
 # ------------------------------------------------------
@@ -50,6 +34,17 @@ def get_data():
 
     
     return df_portals
+        
+# ------------------------------------------------------
+#                        CONFIG
+# ------------------------------------------------------
+load_dotenv()
+
+# load Backblaze connection
+b2 = B2(endpoint=os.environ['B2_ENDPOINT'],
+        key_id=os.environ['B2_KEYID'], 
+        secret_key=os.environ['B2_APPKEY'])  
+
 
 # ------------------------------------------------------
 #                         APP
@@ -59,12 +54,38 @@ def get_data():
 # ------------------------------
 st.write(
 '''
-# What are the different Job Portals in our Data:
-We pull data from our Backblaze storage bucket, and render it in Streamlit.
+# Welcome to your resume assistant
 ''')
 
-
+### Get Job_Portal DataFrame
 df_portals= get_data()
+
+# ------------------------------------------------------
+#                     RESUME UPLOAD
+# ------------------------------------------------------
+
+st.set_page_config(page_title = "Resume Uploader")
+
+resume_file = st.file_uploader(label = "Please Upload your Resume (pdf files only)", type = 'pdf')
+
+if resume_file:
+    pdfReader = PdfReader(resume_file)
+    page = pdfReader.pages[1] 
+    page_text =  page.extract_text()
+
+  # Convert the selected page to an image
+    images = convert_from_bytes(pdf_file.getvalue())
+    page_image = images[0]
+
+    # Create two columns to display the image and text
+    col1, col2 = st.columns(2)
+
+  # Display the image in the first column
+    col1.image(image)
+  
+    col2.text_area("Page Text", height=800, value=read_pdf_page(pdf_file),
+                  key="my_text_area", on_change=on_text_area_change)
+
 
 
 # ------------------------------
