@@ -10,6 +10,14 @@ from utils.b2 import B2
 import plotly.express as px
 import plotly.graph_objects as go
 
+# ------------------------------------------------------
+#                     RESUME UPLOAD
+# ------------------------------------------------------
+
+st.set_page_config(page_title = "Resume Uploader")
+
+resume_file = st.file_uploader(label = "Please Upload your Resume (pdf files only)", type = 'pdf')
+
 
 
 # ------------------------------------------------------
