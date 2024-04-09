@@ -55,6 +55,9 @@ b2 = B2(endpoint=os.environ['B2_ENDPOINT'],
 
 st.set_page_config(page_title = "Resume Uploader")
 
+def on_text_area_change():
+    st.session_state.page_text = st.session_state.my_text_area
+
 st.write(
 '''
 # Welcome to your resume assistant
