@@ -84,7 +84,7 @@ if resume_file:
     col1, col2 = st.columns(2)
 
   # Display the image in the first column
-    col1.image(image)
+    col1.image(page_image)
   
     col2.text_area("Page Text", height=800, value=read_pdf_page(resume_file),
                   key="my_text_area", on_change=on_text_area_change)
