@@ -52,6 +52,9 @@ b2 = B2(endpoint=os.environ['B2_ENDPOINT'],
 # ------------------------------
 # PART 1 : Pull data
 # ------------------------------
+
+st.set_page_config(page_title = "Resume Uploader")
+
 st.write(
 '''
 # Welcome to your resume assistant
@@ -64,7 +67,7 @@ df_portals= get_data()
 #                     RESUME UPLOAD
 # ------------------------------------------------------
 
-st.set_page_config(page_title = "Resume Uploader")
+
 
 resume_file = st.file_uploader(label = "Please Upload your Resume (pdf files only)", type = 'pdf')
 
