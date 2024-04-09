@@ -73,7 +73,7 @@ resume_file = st.file_uploader(label = "Please Upload your Resume (pdf files onl
 
 if resume_file:
     pdfReader = PdfReader(resume_file)
-    page = pdfReader.pages[1] 
+    page = pdfReader.pages[0] 
     page_text =  page.extract_text()
 
   # Convert the selected page to an image
