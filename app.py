@@ -122,15 +122,20 @@ st.write(
     '''
     ## Issues with the Model:
 
-        Model is able to give us a brakdown of keywords in our inputted resume. 
-        However we still need it to recognize which entities represent what keywords 
-        i.e We want to know if a specific keyword is a 'Job Description' or a 'Skill' , etc.
+    Model is able to give us a breakdown of keywords in our inputted resume. 
+    However it is still unable to recognize strings like '__________'. We need ot work on cleaning the resumes as they are uploaded
+    The model still can't recognize which entities represent what keywords 
+    i.e We want to know if a specific keyword is a 'Job Description' or a 'Skill' , etc.
         
 
    ##  Way Forward:
 
     We need to improve our model using NER (Named Entity Recognition) models that can recognize the exact label of a given resume. We can then match these
-    named-entities with job descriptions in our dataframe
+    named-entities with job descriptions in our dataframe. 
+
+    Such NER models are available and can be included in the model.py file. 
+    Furthermore we need to include a section where we clean the resume text and remove values like '______'.
+    Our app can also have better visualisations in terms of the graphs and keywords we collect. 
 
     ''')
 
