@@ -47,7 +47,7 @@ b2 = B2(endpoint=os.environ['B2_ENDPOINT'],
         key_id=os.environ['B2_KEYID'], 
         secret_key=os.environ['B2_APPKEY'])  
 
-
+kb = KeyBERT()
 # ------------------------------------------------------
 #                         APP
 # ------------------------------------------------------
@@ -93,22 +93,23 @@ if resume_file:
   
     col2.text_area("Page Text", height=800, value= page_text,
                   key="my_text_area", on_change=on_text_area_change)
+    
+    keywords = kb.extract_keywords(page_text, stop_words = 'english',
+                               keyphrase_ngram_range = (1,3),
+                               nr_candidates= 0.2*len(resume_text),
+                               use_mmr = True,
+                               top_n = 20,
+                               diversity = 0.8,)
+    
+    st.write("Your Resume contains the following keywords:")
+
+    st.write(keywords)
 
 
 
 # ------------------------------
 # PART 2 : Plot
 # ------------------------------
-
-
-
-kb = KeyBERT()
-keywords = kb.extract_keywords(page_text, stop_words = 'english',
-                               keyphrase_ngram_range = (1,3),
-                               nr_candidates= 0.2*len(resume_text),
-                               use_mmr = True,
-                               top_n = 20,
-                               diversity = 0.8,)
 
 
 
