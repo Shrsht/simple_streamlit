@@ -96,7 +96,7 @@ if resume_file:
     
     keywords = kb.extract_keywords(page_text, stop_words = 'english',
                                keyphrase_ngram_range = (1,3),
-                               nr_candidates= 0.2*len(resume_text),
+                               nr_candidates= 0.2*len(page_text),
                                use_mmr = True,
                                top_n = 20,
                                diversity = 0.8,)
