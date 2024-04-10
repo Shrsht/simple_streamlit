@@ -14,6 +14,8 @@ from pdf2image import convert_from_bytes
 from PIL import Image
 from PyPDF2 import PdfReader
 
+from keybert import KeyBERT
+
 
 # ------------------------------------------------------
 #                      APP CONSTANTS
@@ -98,6 +100,19 @@ if resume_file:
 # PART 2 : Plot
 # ------------------------------
 
+
+
+kb = KeyBERT()
+keywords = kb.extract_keywords(page_text, stop_words = 'english',
+                               keyphrase_ngram_range = (1,3),
+                               nr_candidates= 0.2*len(resume_text),
+                               use_mmr = True,
+                               top_n = 20,
+                               diversity = 0.8,)
+
+
+
+
 st.write(
 '''
 ## Visualize
@@ -111,4 +126,18 @@ fig = fig = go.Figure(data=[go.Bar(x=df_portals['Job Portal'].value_counts().ind
                                    y= df_portals['Job Portal'].value_counts().values)])
 
 st.plotly_chart(fig)
+
+st.write(
+    '''
+    Issue with the Model:
+
+        Model is able to give us a brakdown of keywords in our inputted resume. However we still need it to recognize which entities represent what
+        
+
+    Way Forward:
+
+    We need to improve our model using NER (Named Entity Recognition) models that can recognize the exact label of a given resume. We can then match these
+    named-entities with job descriptions in our dataframe
+
+    ''')
 
