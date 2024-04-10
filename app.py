@@ -100,10 +100,17 @@ if resume_file:
                                use_mmr = True,
                                top_n = 20,
                                diversity = 0.8,)
+    scores = []
+    words = []
+    
+    for i in keywords:
+        words.append(i[0])
+        scores.append(i[1])
+
     
     st.write("Your Resume contains the following keywords:")
 
-    st.write(keywords)
+    st.write(words)
 
 
 
@@ -111,8 +118,21 @@ if resume_file:
 # PART 2 : Plot
 # ------------------------------
 
+st.write(
+    '''
+    ## Issues with the Model:
 
+        Model is able to give us a brakdown of keywords in our inputted resume. 
+        However we still need it to recognize which entities represent what keywords 
+        i.e We want to know if a specific keyword is a 'Job Description' or a 'Skill' , etc.
+        
 
+   ##  Way Forward:
+
+    We need to improve our model using NER (Named Entity Recognition) models that can recognize the exact label of a given resume. We can then match these
+    named-entities with job descriptions in our dataframe
+
+    ''')
 
 st.write(
 '''
@@ -123,22 +143,12 @@ Plotting the frequency of Job Portals in our Dataset
 
 
 
-fig = fig = go.Figure(data=[go.Bar(x=df_portals['Job Portal'].value_counts().index, 
-                                   y= df_portals['Job Portal'].value_counts().values)])
+# fig = fig = go.Figure(data=[go.Bar(x=df_portals['Job Portal'].value_counts().index, 
+#                                    y= df_portals['Job Portal'].value_counts().values)])
+
+fig = fig = go.Figure(data=[go.Bar(x = words, 
+                                    y = scores)])
 
 st.plotly_chart(fig)
 
-st.write(
-    '''
-    Issue with the Model:
-
-        Model is able to give us a brakdown of keywords in our inputted resume. However we still need it to recognize which entities represent what
-        
-
-    Way Forward:
-
-    We need to improve our model using NER (Named Entity Recognition) models that can recognize the exact label of a given resume. We can then match these
-    named-entities with job descriptions in our dataframe
-
-    ''')
 
