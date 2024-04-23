@@ -167,8 +167,7 @@ if resume_file:
 
 
 
-    #fig = go.Figure(data=[go.Bar(x = words, 
-                                    y = scores)])
+    #fig = go.Figure(data=[go.Bar(x = words, y = scores)])
 
     #st.plotly_chart(fig)
 
