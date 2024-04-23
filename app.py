@@ -120,7 +120,7 @@ if resume_file:
                                top_n = 20,
                                diversity = 0.8)
     for tup in keywords_1[0:5]:
-        st.caption(tup[0]]) 
+        st.caption(tup[0]) 
 
 
     st.write (
@@ -136,7 +136,7 @@ if resume_file:
                                diversity = 0.8)
     
     for tup in keywords_2[0:5]:
-        st.caption(tup[0]]) 
+        st.caption(tup[0]) 
 
 
     st.write (
