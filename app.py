@@ -103,6 +103,10 @@ if resume_file:
         '''
     )
 
+    page_text = page_text.replace("_","")
+    pat = r'[^a-zA-z.,!?/:_;\"\'\s]'
+    page_text = re.sub(pat,'', page_text)
+
    
     st.write (
         '''
@@ -116,7 +120,7 @@ if resume_file:
                                top_n = 20,
                                diversity = 0.8)
     for tup in keywords_1[0:5]:
-        st.caption(f':blue[tup[0]]') 
+        st.caption(tup[0]]) 
 
 
     st.write (
@@ -132,7 +136,7 @@ if resume_file:
                                diversity = 0.8)
     
     for tup in keywords_2[0:5]:
-        st.caption(f':blue[tup[0]]') 
+        st.caption(tup[0]]) 
 
 
     st.write (
@@ -148,7 +152,7 @@ if resume_file:
                                diversity = 0.8)
     
     for tup in keywords_2[0:5]:
-        st.caption(f':blue[tup[0]]') 
+        st.caption([tup[0]) 
 
 
 
