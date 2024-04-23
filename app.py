@@ -1,19 +1,13 @@
 import os
 import pickle
-
 import streamlit as st
 from dotenv import load_dotenv
-
 from utils.b2 import B2
-
-
 import plotly.express as px
 import plotly.graph_objects as go
-
 from pdf2image import convert_from_bytes
 from PIL import Image
 from PyPDF2 import PdfReader
-
 from keybert import KeyBERT
 
 
@@ -33,8 +27,6 @@ def get_data():
     b2.set_bucket(os.environ['B2_BUCKETNAME'])
     df_portals = b2.get_df(REMOTE_DATA)
 
-
-    
     return df_portals
         
 # ------------------------------------------------------
@@ -73,6 +65,17 @@ df_portals= get_data()
 # ------------------------------------------------------
 
 
+st.write(
+
+    '''
+    ### This App is designed to give you a breakdown of the various keywords in your resume as well as give you a recommendation
+    of a few jobs you would be a good fit for.
+
+    To learn about your Resume, please upload it below:
+
+    '''
+
+)
 
 resume_file = st.file_uploader(label = "Please Upload your Resume (pdf files only)", type = 'pdf')
 
@@ -118,42 +121,42 @@ if resume_file:
 # PART 2 : Plot
 # ------------------------------
 
-st.write(
-    '''
-    ## Issues with the Model:
+    st.write(
+        '''
+        ## Issues with the Model:
 
-    Model is able to give us a breakdown of keywords in our inputted resume. 
-    However it is still unable to recognize strings like '__________'. We need ot work on cleaning the resumes as they are uploaded
-    The model still can't recognize which entities represent what keywords 
-    i.e We want to know if a specific keyword is a 'Job Description' or a 'Skill' , etc.
+        Model is able to give us a breakdown of keywords in our inputted resume. 
+        However it is still unable to recognize strings like '__________'. We need ot work on cleaning the resumes as they are uploaded
+        The model still can't recognize which entities represent what keywords 
+        i.e We want to know if a specific keyword is a 'Job Description' or a 'Skill' , etc.
         
 
-   ##  Way Forward:
+       ##  Way Forward:
 
-    We need to improve our model using NER (Named Entity Recognition) models that can recognize the exact label of a given resume. We can then match these
-    named-entities with job descriptions in our dataframe. 
+        We need to improve our model using NER (Named Entity Recognition) models that can recognize the exact label of a given resume. We can then match these
+        named-entities with job descriptions in our dataframe. 
 
-    Such NER models are available and can be included in the model.py file. 
-    Furthermore we need to include a section where we clean the resume text and remove values like '______'.
-    Our app can also have better visualisations in terms of the graphs and keywords we collect. 
+        Such NER models are available and can be included in the model.py file. 
+        Furthermore we need to include a section where we clean the resume text and remove values like '______'.
+        Our app can also have better visualisations in terms of the graphs and keywords we collect. 
 
-    ''')
+        ''')
 
-st.write(
-'''
-## Visualize
-Plotting the frequency of Job Portals in our Dataset
-'''
-)
+    st.write(
+    '''
+    ## Visualize
+    Plotting the frequency of Job Portals in our Dataset
+    '''
+    )
 
 
 
 # fig = fig = go.Figure(data=[go.Bar(x=df_portals['Job Portal'].value_counts().index, 
 #                                    y= df_portals['Job Portal'].value_counts().values)])
 
-fig = fig = go.Figure(data=[go.Bar(x = words, 
+    fig = fig = go.Figure(data=[go.Bar(x = words, 
                                     y = scores)])
 
-st.plotly_chart(fig)
+    st.plotly_chart(fig)
 
 
