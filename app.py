@@ -93,7 +93,7 @@ if resume_file:
   # Display the image in the first column
     col1.image(page_image)
   
-    col2.text_area( height=800, value= page_text,
+    col2.text_area("Page Text",height=800, value= page_text,
                   key="my_text_area", on_change=on_text_area_change)
 
     st.write(
