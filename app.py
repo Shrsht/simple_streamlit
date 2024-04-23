@@ -152,7 +152,7 @@ if resume_file:
                                diversity = 0.8)
     
     for tup in keywords_2[0:5]:
-        st.caption([tup[0]) 
+        st.caption(tup[0]) 
 
 
 
