@@ -193,10 +193,6 @@ if resume_file:
 
 
 
-x
-
-
-
     #fig = go.Figure(data=[go.Bar(x = words, y = scores)])
 
     #st.plotly_chart(fig)
