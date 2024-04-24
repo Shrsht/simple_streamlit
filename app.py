@@ -189,10 +189,10 @@ if resume_file:
     '''
     )
 
-    st.write(df_jobs[df_jobs['skills'].str.contains(keywords_1[0][0])][['Job Id', 'Job Title','Company','Role','Starting Salary ($1K)']])
+    st.write(df_jobs[df_jobs['skills'].str.contains(words1[0])]])
 
 
-
+# [['Job Id', 'Job Title','Company','Role','Starting Salary ($1K)']
     #fig = go.Figure(data=[go.Bar(x = words, y = scores)])
 
     #st.plotly_chart(fig)
