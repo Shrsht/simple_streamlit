@@ -189,7 +189,7 @@ if resume_file:
     '''
     )
 
-    st.write(df_jobs[df_jobs['skills'].str.contains('analytics')])
+    st.write(df_jobs[df_jobs['skills'].str.contains('Data')])
 
 
 # [['Job Id', 'Job Title','Company','Role','Starting Salary ($1K)']
