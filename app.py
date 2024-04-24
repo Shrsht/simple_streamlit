@@ -59,7 +59,7 @@ st.write(
 ''')
 
 ### Get Job_Portal DataFrame
-df_portals= get_data()
+df_jobs = get_data()
 
 # ------------------------------------------------------
 #                     RESUME UPLOAD
@@ -120,10 +120,16 @@ if resume_file:
                                use_mmr = True,
                                top_n = 20,
                                diversity = 0.8)
-    for tup in keywords_1[0:5]:
-        st.caption(tup[0]) 
 
 
+    words1 = [w[0] for w in keywords_1]
+    scores1 = [s[1] for s in keywords_1]
+    
+    fig1 = go.Figure(data=[go.Bar(x = words1, y = scores1)])
+
+    st.plotly_chart(fig1)
+
+    
     st.write (
         '''
         ### Two-Letter Keywords:
@@ -136,8 +142,14 @@ if resume_file:
                                top_n = 20,
                                diversity = 0.8)
     
-    for tup in keywords_2[0:5]:
-        st.write(tup[0]) 
+    words2 = [w[0] for w in keywords_2]
+    scores2 = [s[1] for s in keywords_2]
+    
+    fig2 = go.Figure(data=[go.Bar(x = words2, y = scores2)])
+
+    st.plotly_chart(fig2)
+    
+
 
 
     st.write (
@@ -152,8 +164,12 @@ if resume_file:
                                top_n = 20,
                                diversity = 0.8)
     
-    for tup in keywords_2[0:5]:
-        st.write(tup[0]) 
+    words3 = [w[0] for w in keywords_3]
+    scores3 = [s[1] for s in keywords_3]
+    
+    fig3 = go.Figure(data=[go.Bar(x = words3, y = scores3)])
+
+    st.plotly_chart(fig3)
 
 
 
@@ -167,6 +183,10 @@ if resume_file:
     ## Given your keywords, let us have a look at what jobs match your resume: 
     '''
     )
+
+    st.write(jobs_df[jobs_df['skills'].str.contains(keywords_1[0])][['Job Id', 'Job Title','Company','Role','Starting Salary ($1K)']])
+
+
 
 
 
