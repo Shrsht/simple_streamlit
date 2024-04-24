@@ -79,10 +79,15 @@ st.write(
 
 resume_file = st.file_uploader(label = "Please Upload your Resume (pdf files only)", type = 'pdf')
 
+
 if resume_file:
-    pdfReader = PdfReader(resume_file)
-    page = pdfReader.pages[0] 
-    page_text =  page.extract_text()
+
+    try:
+        pdfReader = PdfReader(resume_file)
+        page = pdfReader.pages[0] 
+        page_text =  page.extract_text()
+    except:
+        st.write("Resume Failed to Read. Please try again with a different file")
 
   # Convert the selected page to an image
     images = convert_from_bytes(resume_file.getvalue())
@@ -184,7 +189,7 @@ if resume_file:
     '''
     )
 
-    st.write(jobs_df[jobs_df['skills'].str.contains(keywords_1[0])][['Job Id', 'Job Title','Company','Role','Starting Salary ($1K)']])
+    st.write(df_jobs[df_jobs['skills'].str.contains(keywords_1[0])][['Job Id', 'Job Title','Company','Role','Starting Salary ($1K)']])
 
 
 
