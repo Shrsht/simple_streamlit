@@ -11,7 +11,7 @@ from PIL import Image
 from PyPDF2 import PdfReader
 from keybert import KeyBERT
 
-
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 # ------------------------------------------------------
 #                      APP CONSTANTS
 # ------------------------------------------------------
