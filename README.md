@@ -2,7 +2,7 @@
 
 https://localtest.streamlit.app/
 
-## Overview. 
+## Overview
 
 This app is designed as a resume analyzing assistant for students and aspiring jobb applicants that are looking to improve and modify their resume to suit a job description. 
 The app takes in a resume and analyzes it using HuggingFace's KeyBERT() Keyword Recognition Model. It then returns graphical visualisations of the most important keywords in the user's resume as well as a list of jobs fron the database that match the keywords.
